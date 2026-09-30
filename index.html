@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nishanth DM | CSE Student & Innovator</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        :root {
+            --bg: #080b14;
+            --card: #101522;
+            --card-light: #151c2d;
+            --text: #f5f7ff;
+            --muted: #9ca7bd;
+            --primary: #7c5cff;
+            --secondary: #00d4ff;
+            --border: rgba(255, 255, 255, 0.08);
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Background */
+        body::before {
+            content: "";
+            position: fixed;
+            width: 500px;
+            height: 500px;
+            background: var(--primary);
+            filter: blur(180px);
+            opacity: 0.18;
+            top: -150px;
+            left: -150px;
+            z-index: -1;
+        }
+
+        body::after {
+            content: "";
+            position: fixed;
+            width: 450px;
+            height: 450px;
+            background: var(--secondary);
+            filter: blur(180px);
+            opacity: 0.12;
+            right: -150px;
+            bottom: -100px;
+            z-index: -1;
+        }
+
+        /* Navbar */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 100;
+            backdrop-filter: blur(15px);
+            background: rgba(8, 11, 20, 0.75);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .nav-container {
+            max-width: 1100px;
+            margin: auto;
+            padding: 18px 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 22px;
+            font-weight: bold;
+            color: white;
+        }
+
+        .logo span {
+            color: var(--secondary);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 25px;
+        }
+
+        nav a {
+            color: var(--muted);
+            text-decoration: none;
+            font-size: 14px;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            color: white;
+        }
+
+        /* Hero */
+        .hero {
+            min-height: 100vh;
+            max-width: 1100px;
+            margin: auto;
+            padding: 150px 25px 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 800px;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 8px 15px;
+            border: 1px solid var(--border);
+            background: rgba(255, 255, 255, 0.04);
+            border-radius: 50px;
+            color: var(--secondary);
+            font-size: 13px;
+            margin-bottom: 25px;
+        }
+
+        .hero h1 {
+            font-size: clamp(42px, 8vw, 78px);
+            line-height: 1.05;
+            margin-bottom: 20px;
+        }
+
+        .gradient-text {
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        .hero p {
+            max-width: 650px;
+            margin: auto;
+            color: var(--muted);
+            font-size: 18px;
+        }
+
+        .buttons {
+            margin-top: 35px;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 13px 22px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.3s;
+            display: inline-block;
+        }
+
+        .primary-btn {
+            background: linear-gradient(90deg, var(--primary), #9b6cff);
+            color: white;
+            box-shadow: 0 10px 30px rgba(124, 92, 255, 0.25);
+        }
+
+        .secondary-btn {
+            border: 1px solid var(--border);
+            color: white;
+            background: rgba(255, 255, 255, 0.04);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+        }
+
+        /* Sections */
+        section {
+            max-width: 1100px;
+            margin: auto;
+            padding: 90px 25px;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 45px;
+        }
+
+        .section-title h2 {
+            font-size: 35px;
+            margin-bottom: 10px;
+        }
+
+        .section-title p {
+            color: var(--muted);
+        }
+
+        /* About */
+        .about {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+        }
+
+        .card {
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.02));
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            padding: 30px;
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(124, 92, 255, 0.4);
+        }
+
+        .card h3 {
+            margin-bottom: 12px;
+        }
+
+        .card p {
+            color: var(--muted);
+        }
+
+        /* Skills */
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        .skill {
+            padding: 9px 14px;
+            background: rgba(124, 92, 255, 0.1);
+            border: 1px solid rgba(124, 92, 255, 0.25);
+            border-radius: 50px;
+            font-size: 13px;
+            color: #c9c0ff;
+        }
+
+        /* Projects */
+        .projects {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .project {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-number {
+            font-size: 40px;
+            font-weight: bold;
+            color: rgba(255, 255, 255, 0.08);
+            margin-bottom: 15px;
+        }
+
+        .project h3 {
+            margin-bottom: 10px;
+        }
+
+        .project p {
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+
+        .tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 7px;
+        }
+
+        .tech span {
+            font-size: 11px;
+            padding: 5px 8px;
+            border-radius: 5px;
+            background: rgba(0, 212, 255, 0.08);
+            color: var(--secondary);
+        }
+
+        /* Ideas */
+        .idea-box {
+            text-align: center;
+            padding: 55px 30px;
+            background: linear-gradient(135deg, rgba(124, 92, 255, 0.12), rgba(0, 212, 255, 0.06));
+            border: 1px solid var(--border);
+            border-radius: 20px;
+        }
+
+        .idea-box h2 {
+            font-size: 32px;
+            margin-bottom: 12px;
+        }
+
+        .idea-box p {
+            color: var(--muted);
+            max-width: 650px;
+            margin: auto;
+        }
+
+        #idea {
+            margin-top: 25px;
+            min-height: 28px;
+            color: var(--secondary);
+            font-weight: bold;
+        }
+
+        /* Contact */
+        .contact {
+            text-align: center;
+        }
+
+        .contact p {
+            color: var(--muted);
+            margin-bottom: 25px;
+        }
+
+        /* Footer */
+        footer {
+            border-top: 1px solid var(--border);
+            text-align: center;
+            padding: 25px;
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        /* Mobile */
+        @media (max-width: 800px) {
+            nav ul {
+                display: none;
+            }
+
+            .about,
+            .projects {
+                grid-template-columns: 1fr;
+            }
+
+            .hero {
+                padding-top: 130px;
+            }
+
+            .hero p {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+
+<body> <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo">Nishanth<span>.</span></div>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#ideas">Ideas</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+
+    </nav> <!-- Hero -->
+    <main id="home">
+        <div class="hero">
+            <div class="hero-content">
+                <div class="badge">
+                    👨‍💻 BE CSE Student • Builder • Learner
+                </div>
+
+                <h1>
+                    Hi, I'm <span class="gradient-text">Nishanth DM</span>
+                </h1>
+
+                <p>
+                    A Computer Science Engineering student passionate about
+                    technology, problem solving and building innovative projects
+                    that can solve real-world problems.
+                </p>
+
+                <div class="buttons">
+                    <a href="#projects" class="btn primary-btn">
+                        Explore My Projects
+                    </a>
+
+                    <a href="#contact" class="btn secondary-btn">
+                        Let's Connect
+                    </a>
+                </div>
+
+            </div>
+        </div>
+
+    </main> <!-- About -->
+    <section id="about">
+        <div class="section-title">
+            <h2>About Me</h2>
+            <p>Turning ideas into working projects.</p>
+        </div>
+
+        <div class="about">
+
+            <div class="card">
+                <h3>🚀 Who I Am</h3>
+
+                <p>
+                    I'm Nishanth DM, currently pursuing BE in Computer Science
+                    Engineering. I enjoy exploring emerging technologies and
+                    converting interesting ideas into practical software projects.
+                </p>
+            </div>
+
+            <div class="card">
+                <h3>🧠 What I Like</h3>
+
+                <p>
+                    I am interested in Artificial Intelligence, Web Development,
+                    Automation, Cloud Computing, Cybersecurity and solving
+                    real-world problems using technology.
+                </p>
+            </div>
+
+        </div>
+
+        <div class="card" style="margin-top:25px;">
+            <h3>⚡ Technologies I'm Exploring</h3>
+
+            <div class="skills">
+                <span class="skill">HTML</span>
+                <span class="skill">CSS</span>
+                <span class="skill">JavaScript</span>
+                <span class="skill">Python</span>
+                <span class="skill">Java</span>
+                <span class="skill">C / C++</span>
+                <span class="skill">React</span>
+                <span class="skill">Node.js</span>
+                <span class="skill">AI / ML</span>
+                <span class="skill">Git & GitHub</span>
+            </div>
+        </div>
+
+    </section> <!-- Projects -->
+    <section id="projects">
+        <div class="section-title">
+            <h2>Innovative Projects</h2>
+            <p>Some project concepts I want to build.</p>
+        </div>
+
+        <div class="projects">
+
+            <div class="card project">
+                <div class="project-number">01</div>
+
+                <h3>🤖 AI Study Assistant</h3>
+
+                <p>
+                    An AI-powered platform that converts study material into
+                    summaries, quizzes, flashcards and personalized learning plans.
+                </p>
+
+                <div class="tech">
+                    <span>Python</span>
+                    <span>AI</span>
+                    <span>JavaScript</span>
+                </div>
+            </div>
+
+            <div class="card project">
+                <div class="project-number">02</div>
+
+                <h3>🌱 Smart Campus</h3>
+
+                <p>
+                    A smart campus platform that monitors electricity, water,
+                    classrooms and other resources to reduce unnecessary usage.
+                </p>
+
+                <div class="tech">
+                    <span>IoT</span>
+                    <span>Cloud</span>
+                    <span>Dashboard</span>
+                </div>
+            </div>
+
+            <div class="card project">
+                <div class="project-number">03</div>
+
+                <h3>🔐 Cyber Guardian</h3>
+
+                <p>
+                    A cybersecurity learning platform that helps students
+                    understand common vulnerabilities through safe simulations.
+                </p>
+
+                <div class="tech">
+                    <span>Python</span>
+                    <span>Security</span>
+                    <span>Web</span>
+                </div>
+            </div>
+
+            <div class="card project">
+                <div class="project-number">04</div>
+
+                <h3>🚌 Smart Transport</h3>
+
+                <p>
+                    A college transportation system that provides live bus
+                    tracking, route information and estimated arrival times.
+                </p>
+
+                <div class="tech">
+                    <span>Maps</span>
+                    <span>GPS</span>
+                    <span>Firebase</span>
+                </div>
+            </div>
+
+            <div class="card project">
+                <div class="project-number">05</div>
+
+                <h3>💡 IdeaVault</h3>
+
+                <p>
+                    A platform where students can submit, discuss and collaborate
+                    on innovative project ideas and find teammates.
+                </p>
+
+                <div class="tech">
+                    <span>React</span>
+                    <span>Node.js</span>
+                    <span>MongoDB</span>
+                </div>
+            </div>
+
+            <div class="card project">
+                <div class="project-number">06</div>
+
+                <h3>🧑‍💻 Code Mentor AI</h3>
+
+                <p>
+                    An interactive coding mentor that explains errors, generates
+                    hints and creates personalized programming challenges.
+                </p>
+
+                <div class="tech">
+                    <span>AI</span>
+                    <span>Python</span>
+                    <span>API</span>
+                </div>
+            </div>
+
+        </div>
+
+    </section> <!-- Idea Generator -->
+    <section id="ideas">
+        <div class="idea-box">
+
+            <h2>💡 Need a Project Idea?</h2>
+
+            <p>
+                Click the button and generate a random project idea that could
+                become your next CSE project.
+            </p>
+
+            <div id="idea">
+                Your next idea is waiting...
+            </div>
+
+            <button class="btn primary-btn" style="border:none; margin-top:20px; cursor:pointer;"
+                onclick="generateIdea()">
+                Generate Idea 🚀
+            </button>
+
+        </div>
+
+    </section> <!-- Contact -->
+    <section id="contact">
+        <div class="contact">
+
+            <div class="section-title">
+                <h2>Let's Build Something</h2>
+
+                <p>
+                    Have an interesting idea? Let's turn it into a real project.
+                </p>
+            </div>
+
+            <a href="mailto:yourmail@example.com" class="btn primary-btn">
+                Contact Me
+            </a>
+
+        </div>
+
+    </section> <!-- Footer -->
+    <footer> © <span id="year"></span> Nishanth DM • BE CSE Student </footer>
+    <script> const ideas = ["AI-powered attendance system using face recognition", "Smart waste management system using IoT", "AI resume analyzer for students", "College lost-and-found platform", "Real-time campus emergency alert system", "AI-powered coding interview simulator", "Smart timetable generator using optimization", "Student skill-sharing marketplace", "AI-powered plagiarism learning assistant", "College event discovery platform", "Personal finance tracker for students", "Smart parking system using computer vision"]; function generateIdea() { const randomIndex = Math.floor(Math.random() * ideas.length); document.getElementById("idea").textContent = "💡 " + ideas[randomIndex]; } document.getElementById("year").textContent = new Date().getFullYear(); </script>
+</body>
+
+</html>
